@@ -12,7 +12,7 @@ export default function Index() {
     <div className="font-sans p-4">
       <ul className="list-disc mt-4 pl-6 space-y-2">
         <li>
-          <Link className="text-blue-500 underline visited:text-purple-900" to="/Estacion">
+          <Link className="text-blue-500 underline visited:text-purple-900" to="/estacion">
           Ver datos de la estación 
           </Link>
         </li>
