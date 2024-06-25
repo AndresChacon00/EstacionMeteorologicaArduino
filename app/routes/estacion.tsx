@@ -33,6 +33,7 @@ const Estacion = () => {
         </ul>
       ) : (
         <p>No hay datos por ahora</p>
+        
       )}
     </div>
   );
