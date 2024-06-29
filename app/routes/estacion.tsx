@@ -1,6 +1,6 @@
 import { MetaFunction } from "@remix-run/node"; // Importa MetaFunction para metadatos
-import { getLecturas } from "../utils/db.server.js"; // Importa la función getLecturas para obtener datos
 import { useLoaderData } from "@remix-run/react";
+import { useRealtimeData } from "~/utils/useRealtimeData";
 
 // Opcional: Define metadatos para la página
 export const meta: MetaFunction = () => {
@@ -10,13 +10,23 @@ export const meta: MetaFunction = () => {
   ];
 };
 
-export async function loader() {
-  return await getLecturas();
-}
+export const loader = async () => {
+  return {
+    apiKey: process.env.APIKEY ?? "",
+    authDomain: process.env.AUTHDOMAIN ?? "",
+    projectId: process.env.PROJECTID ?? "",
+    storageBucket: process.env.STORAGEBUCKET ?? "",
+    messagingSenderId: process.env.MESSAGINGSENDERID ?? "",
+    appId: process.env.APPID ?? "",
+    measurementId: process.env.MEASUREMENTID ?? "",
+    databaseUrl: process.env.DATABASEURL ?? "",
+  };
+};
 
 // Componente principal de la página
 const Estacion = () => {
-  const datos = useLoaderData<typeof loader>();
+  const config = useLoaderData<typeof loader>();
+  const lectura = useRealtimeData(config);
 
   return (
     <div>
@@ -25,16 +35,7 @@ const Estacion = () => {
         Esta es la página de la estación meteorológica donde se mostrarán los
         datos recopilados.
       </p>
-      {datos.length > 0 ? (
-        <ul>
-          {datos.map((dato, index) => (
-            <li key={index}>{JSON.stringify(dato)}</li> // Ejemplo de cómo mostrar los datos. Ajusta según la estructura de tus datos.
-          ))}
-        </ul>
-      ) : (
-        <p>No hay datos por ahora</p>
-        
-      )}
+      {lectura ? <p>{JSON.stringify(lectura)}</p> : <p>Cargando datos...</p>}
     </div>
   );
 };

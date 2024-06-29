@@ -1,6 +1,13 @@
 import { getFirestore, collection, getDocs } from "firebase/firestore";
 import app from "../firebaseConfig.server";
 
+export type Lectura = {
+  Temperatura: number;
+  Humedad: number;
+  CalidadAire: number;
+  Lluvia: number;
+};
+
 const db = getFirestore(app);
 
 export async function getLecturas() {

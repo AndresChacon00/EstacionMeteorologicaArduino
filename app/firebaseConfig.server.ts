@@ -16,6 +16,7 @@ const firebaseConfig = {
   messagingSenderId: process.env.MESSAGINGSENDERID,
   appId: process.env.APPID,
   measurementId: process.env.MEASUREMENTID,
+  databaseUrl: process.env.DATABASEURL,
 };
 
 if (process.env.NODE_ENV === "production") {
