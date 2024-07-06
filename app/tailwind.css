@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+nav {
+  box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+  @apply text-2xl font-bold;
+}
+
+h2 {
+  @apply text-xl font-semibold;
+}
+
+section > span {
+  @apply flex gap-2 items-center;
+}
+
+section > p {
+  @apply text-gray-600 ps-2 pt-1 text-lg;
+}
